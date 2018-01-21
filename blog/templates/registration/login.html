@@ -1,0 +1,18 @@
+{% extends "blog/base.html" %}
+
+{% block content %}
+    {% if form.errors or errors %}
+        {% for error in form.errors %}
+        <p>{{ error }}</p>
+        {% endfor %}
+        {% for error in errors %}
+        <p>{{ error }}</p>
+        {% endfor %}
+    {% endif %}
+
+    <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Log In" />
+    </form>
+{% endblock %}
